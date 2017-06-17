@@ -1,0 +1,13 @@
+- hosts: mysqlservers
+  user: root
+  vars_files:
+    - variables/application-versions.yml
+    - variables/sensitive.yml
+
+  tasks:
+    - include: tasks/mariadb.yml
+    - include: tasks/phpmyadmin.yml
+
+  handlers:
+   - include: handlers/system.yml
+   - include: handlers/services.yml

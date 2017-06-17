@@ -1,0 +1,36 @@
+- hosts: all
+  user: root
+  tasks:
+    - name: yum upgrade
+      yum: >
+        update_cache=yes
+        name=*
+        state=latest
+        update_cache=yes
+      async: 45
+      poll: 0
+      when: >
+        ansible_distribution == 'CentOS'
+        or
+        ansible_distribution == 'RedHat'
+    - name: dnf upgrade
+      dnf: >
+        update_cache=yes
+        name=*
+        state=latest
+        update_cache=yes
+      async: 45
+      poll: 0
+      when: >
+        ansible_distribution == 'Fedora'
+    - name: deb do dist-upgrade
+      apt: >
+        update_cache=yes
+        cache_valid_time=1200
+        upgrade=dist
+      async: 45
+      poll: 0
+      when: >
+        ansible_distribution == 'Debian'
+        or
+        ansible_distribution == 'Ubuntu'

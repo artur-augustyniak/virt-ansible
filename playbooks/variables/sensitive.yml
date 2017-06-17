@@ -1,0 +1,6 @@
+# For the Ansible examples:
+# python -c 'import crypt; print crypt.crypt("Password", "$1$SomeSalt$")'
+---
+
+# Default mysql password
+mysql_root_password: pass
